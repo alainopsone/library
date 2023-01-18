@@ -20,33 +20,24 @@ let library = [
 ]
 
 function Book() {
-  const bookList = document.querySelector('.js-book-list')
-  const bookTemplate = document.querySelector('.book-template')
-  const templateContent = bookTemplate.content
-
   library.forEach(book => {
     const { title, author, page, read } = book
 
-    templateContent.querySelector('.book-title').textContent = title
-    templateContent.querySelector('.book-author').textContent = author
-    templateContent.querySelector('.book-page').textContent = page
-    templateContent.querySelector('.book-read').textContent = read
-
-    bookList.append(bookTemplate.content.cloneNode(true))
+    bookTemplate({ title, author, page, read})
   })
 }
 
 function bookTemplate({ title = '---', author = '---', page = 0, read = false } = {}) {
   const bookList = document.querySelector('.js-book-list')
-  const bookTemplate = document.querySelector('.book-template')
-  const templateContent = bookTemplate.content
+  const template = document.querySelector('.book-template')
+  const templateContent = template.content
 
   templateContent.querySelector('.book-title').textContent = title
   templateContent.querySelector('.book-author').textContent = author
   templateContent.querySelector('.book-page').textContent = page
   templateContent.querySelector('.book-read').textContent = read
 
-  bookList.append(bookTemplate.content.cloneNode(true))
+  bookList.append(templateContent.cloneNode(true))
 }
 
 function addBookToLibrary() {
@@ -61,9 +52,9 @@ function addBookToLibrary() {
     e.preventDefault()
 
     bookTemplate({
-      title: `${title.value ||= '---'}`,
-      author: `${author.value ||= '---' }`,
-      page: `${page.value ||= '---'}`,
+      title: `${title.value ||= '...'}`,
+      author: `${author.value ||= '...' }`,
+      page: `${page.value ||= '...'}`,
       read: `${read.value ||= 'Not yet'}`
     })
 
