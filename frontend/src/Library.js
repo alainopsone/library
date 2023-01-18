@@ -20,14 +20,25 @@ let library = [
 ]
 
 function Book() {
+  // TUTO: https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
+
   // fetch('../books.json')
-  //   .then(data => data.json())
-  //   .then(data => console.log(data))
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     let books = data
+  //     console.log(data)
+
+  //     books.map(book => {
+  //       const { title, author, page, read } = book
+  //       bookTemplate({ title, author, page, read })
+  //     })
+  //   })
+  //   .catch(err => console.log(err))
 
   library.forEach(book => {
     const { title, author, page, read } = book
 
-    bookTemplate({ title, author, page, read})
+    bookTemplate({ title, author, page, read })
   })
 }
 
