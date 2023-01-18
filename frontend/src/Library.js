@@ -40,7 +40,27 @@ function bookTemplate({ title = '---', author = '---', page = 0, read = false } 
   bookList.append(templateContent.cloneNode(true))
 }
 
-function addBookToLibrary() {
+function removeBook() {
+  const deleteButton = document.querySelectorAll('[data-delete-book]')
+
+  if (deleteButton) {
+    deleteButton.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (e.target === btn ) {
+          const parent = btn.parentElement.parentElement
+
+          parent.classList.add('animate-flicker-out')
+
+          parent.addEventListener('animationend', () => {
+            parent.remove()
+          })
+        }
+      })
+    })
+  }
+}
+
+function addBook() {
   const form = document.querySelector('[data-form]')
   const title = form.querySelector('.js-form-title')
   const author = form.querySelector('.js-form-author')
@@ -64,4 +84,4 @@ function addBookToLibrary() {
   })
 }
 
-export { Book, addBookToLibrary }
+export { Book, addBook, removeBook }
