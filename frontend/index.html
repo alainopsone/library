@@ -7,70 +7,51 @@
     <link rel="stylesheet" href="./src/style.css">
     <title>Library</title>
   </head>
-  <body class="text-slate-800">
-    <h1 class="my-3 text-3xl font-bold text-center text-blue-500">Library</h1>
+  <body class="min-h-screen text-slate-800">
+    <div>
+      <h1 class="my-3 text-3xl font-bold text-center text-blue-500">Library</h1>
 
-    <form class="js-form grid sm:grid-cols-2 grid-cols-1 sm:w-6/12 w-12/12 gap-4 justify-items-center items-center mx-auto p-4 border-solid border-2 rounded border-blue-900">
-      <div class="grid gap-2">
-        <label class="text-center" for="title">Title</label>
-        <input class="js-form-title border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
-      </div>
-      <div class="grid gap-2">
-        <label class="text-center" for="title">Author</label>
-        <input class="js-form-author border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
-      </div>
-      <div class="grid gap-2">
-        <label class="text-center" for="title">Page</label>
-        <input class="js-form-page border-solid border-2 rounded border-blue-900" type="number" name="title" id="title" required>
-      </div>
-      <div class="grid grid-cols-3 gap-2">
-        <p>Read ?</p>
-        <div>
-          <input class="js-form-read" type="radio" id="yes" name="read" value="yes" checked>
-          <label for="yes">Yes</label>
+      <form data-form class="grid md:grid-cols-2 grid-cols-1 md:w-6/12 w-12/12 gap-4 justify-items-center items-center mx-auto p-4 border-solid border-2 rounded border-blue-900">
+        <div class="grid gap-2">
+          <label class="text-center" for="title">Title</label>
+          <input class="js-form-title border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
         </div>
-        <div>
-          <input type="radio" id="no" name="read" value="no">
-          <label for="no">No</label>
+        <div class="grid gap-2">
+          <label class="text-center" for="title">Author</label>
+          <input class="js-form-author border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
         </div>
-      </div>
-      <div class="grid col-span-full gap-4">
-        <button class="js-form-submit py-1 px-3 border-solid border-2 rounded border-blue-900">add book</button>
-      </div>
-    </form>
+        <div class="grid gap-2">
+          <label class="text-center" for="title">Page</label>
+          <input class="js-form-page border-solid border-2 rounded border-blue-900" type="number" name="title" id="title" required>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <p>Read ?</p>
+          <div>
+            <input class="js-form-read" type="radio" id="yes" name="read" value="yes" checked>
+            <label for="yes">Yes</label>
+          </div>
+          <div>
+            <input type="radio" id="no" name="read" value="no">
+            <label for="no">No</label>
+          </div>
+        </div>
+        <div class="grid col-span-full gap-4">
+          <button data-form-submit class="py-1 px-3 border-solid border-2 rounded border-blue-900">add book</button>
+        </div>
+      </form>
 
-    <div class="js-book-list grid gap-4 sm:grid-cols-2 grid-cols-1 sm:w-6/12 w-12/12 mx-auto my-4">
-      <div class="grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400">
-        <h2>Title: Book 1</h2>
-        <p>Author: Name</p>
-        <p>page: 200</p>
-        <p>Read: yes</p>
-        <div class="grid grid-flow-col gap-3">
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-blue-400 bg-blue-400 text-white">Edit</button>
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white">Delete</button>
-        </div>
-      </div>
-      <div class="grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400">
-        <h2>Title: Book 2</h2>
-        <p>Author: Name</p>
-        <p>page: 800</p>
-        <p>Read: no</p>
-        <div class="grid grid-flow-col gap-3">
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-blue-400 bg-blue-400 text-white">Edit</button>
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white">Delete</button>
-        </div>
-      </div>
+      <div data-books-list class="grid gap-4 sm:grid-cols-2 grid-cols-1 md:w-6/12 w-12/12 mx-auto my-4"></div>
     </div>
 
-    <template class="book-template">
-      <div class="js-book-card grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400">
+    <template data-book-template>
+      <div class="animate-swing-in grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400 bg-white">
         <h2 class="book-title"></h2>
         <p class="book-author"></p>
         <p class="book-page"></p>
         <p class="book-read"></p>
-        <div class="grid grid-flow-col gap-3">
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-blue-400 bg-blue-400 text-white">Edit</button>
-          <button class="js-book-delete p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white">Delete</button>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-3">
+          <button class="js-book-delete p-1 border-solid border-2 rounded border-blue-700 bg-blue-500 text-white">Edit</button>
+          <button class="js-book-delete p-1 border-solid border-2 rounded border-red-700 bg-red-500 text-white">Delete</button>
         </div>
       </div>
     </template>

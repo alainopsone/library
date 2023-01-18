@@ -28,8 +28,8 @@ function Book() {
 }
 
 function bookTemplate({ title = '---', author = '---', page = 0, read = false } = {}) {
-  const bookList = document.querySelector('.js-book-list')
-  const template = document.querySelector('.book-template')
+  const bookList = document.querySelector('[data-books-list]')
+  const template = document.querySelector('[data-book-template]')
   const templateContent = template.content
 
   templateContent.querySelector('.book-title').textContent = title
@@ -41,12 +41,12 @@ function bookTemplate({ title = '---', author = '---', page = 0, read = false } 
 }
 
 function addBookToLibrary() {
-  const form = document.querySelector('.js-form')
+  const form = document.querySelector('[data-form]')
   const title = form.querySelector('.js-form-title')
   const author = form.querySelector('.js-form-author')
   const page = form.querySelector('.js-form-page')
   const read = form.querySelector('.js-form-read')
-  const submit = form.querySelector('.js-form-submit')
+  const submit = form.querySelector('[data-form-submit]')
 
   submit.addEventListener('click', (e) => {
     e.preventDefault()
