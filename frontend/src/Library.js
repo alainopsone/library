@@ -20,6 +20,10 @@ let library = [
 ]
 
 function Book() {
+  // fetch('../books.json')
+  //   .then(data => data.json())
+  //   .then(data => console.log(data))
+
   library.forEach(book => {
     const { title, author, page, read } = book
 

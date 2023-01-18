@@ -1,4 +1,4 @@
-import { Book, addBook, removeBook }from './Library'
+import { Book, addBook, removeBook } from './Library'
 
 window.addEventListener('DOMContentLoaded', () => {
   Book()
