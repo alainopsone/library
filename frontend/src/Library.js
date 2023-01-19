@@ -1,19 +1,30 @@
+import { books } from './books.js'
+
 function Library() {
   fecthBooks()
 }
 
 const fecthBooks = async () => {
-  try {
-    const response = await fetch('../src/books.json')
-    const books = await response.json()
+  // try {
+  //   const response = await fetch('../src/books.json')
+  //   const books = await response.json()
 
+  //   books.map(book => {
+  //     const { title, author, page, read } = book
+
+  //     bookTemplate({ title, author, page, read })
+  //   })
+  // } catch (error) {
+  //   console.error(error)
+  // }
+
+  // TODO: delete fake data (will change to async await func (see func above))
+  if (books) {
     books.map(book => {
       const { title, author, page, read } = book
 
       bookTemplate({ title, author, page, read })
     })
-  } catch (error) {
-    console.error(error)
   }
 }
 

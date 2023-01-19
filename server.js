@@ -1,14 +1,18 @@
-import http from 'node:http'
+import { createServer } from 'node:http'
+import { readFile } from 'node:fs/promises'
 
-const hostname = '127.0.0.1'
-const port = 3000
+const path = './books.json'
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello World')
-})
+async function getBooks() {
+  const data = await readFile(path, 'utf8')
+  return JSON.parse(data)
+}
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
+createServer(async (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  const url = new URL(req.url, `http://${req.headers.host}`)
+  const books = await getBooks()
+
+  res.write(JSON.stringify(books))
+  res.end()
+}).listen(3000)
