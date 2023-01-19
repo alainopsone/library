@@ -22,39 +22,35 @@ function bookTemplate({ title = '---', author = '---', page = 0, read = false } 
   const template = document.querySelector('[data-book-template]')
   const templateContent = template.content
 
-  templateContent.querySelector('.book-title').textContent = title
-  templateContent.querySelector('.book-author').textContent = author
-  templateContent.querySelector('.book-page').textContent = page
-  templateContent.querySelector('.book-read').textContent = read
+  templateContent.querySelector('[data-book-title]').textContent = title
+  templateContent.querySelector('[data-book-author]').textContent = author
+  templateContent.querySelector('[data-book-page]').textContent = page
+  templateContent.querySelector('[data-book-read]').textContent = read
 
   bookList.append(templateContent.cloneNode(true))
 }
 
 function removeBook() {
-  const deleteButton = document.querySelectorAll('[data-delete-book]')
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-delete-book]')
 
-  if (deleteButton) {
-    deleteButton.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        if (e.target === btn ) {
-          const parent = btn.parentElement.parentElement
+    if (target) {
+      const parent = target.parentElement.parentElement
 
-          parent.classList.add('animate-flicker-out')
+      parent.classList.add('animate-flicker-out')
 
-          parent.addEventListener('animationend', () => {
-            parent.remove()
-          })
-        }
+      parent.addEventListener('animationend', () => {
+        parent.remove()
       })
-    })
-  }
+    }
+  })
 }
 
 function addBook() {
   const form = document.querySelector('[data-form]')
-  const title = form.querySelector('.js-form-title')
-  const author = form.querySelector('.js-form-author')
-  const page = form.querySelector('.js-form-page')
+  const title = form.querySelector('[data-form-title]')
+  const author = form.querySelector('[data-form-author]')
+  const page = form.querySelector('[data-form-page]')
   const read = form.querySelector('[data-form-read]')
   const submit = form.querySelector('[data-form-submit]')
 
