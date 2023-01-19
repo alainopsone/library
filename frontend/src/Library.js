@@ -1,41 +1,12 @@
-let library = [
-  {
-    title: 'title 1',
-    author: 'author name 1',
-    page: 2332,
-    read: false
-  },
-  {
-    title: 'title 2',
-    author: 'author name 2',
-    page: 133,
-    read: true
-  },
-  {
-    title: 'title 3',
-    author: 'author name 3',
-    page: 293,
-    read: false
-  },
-]
-
 function Book() {
-  // TUTO: https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
+  fecthBooks()
+}
 
-  // fetch('../books.json')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     let books = data
-  //     console.log(data)
+const fecthBooks = async () => {
+  const response = await fetch('../books.json')
+  const books = await response.json()
 
-  //     books.map(book => {
-  //       const { title, author, page, read } = book
-  //       bookTemplate({ title, author, page, read })
-  //     })
-  //   })
-  //   .catch(err => console.log(err))
-
-  library.forEach(book => {
+  books.map(book => {
     const { title, author, page, read } = book
 
     bookTemplate({ title, author, page, read })
@@ -80,7 +51,7 @@ function addBook() {
   const title = form.querySelector('.js-form-title')
   const author = form.querySelector('.js-form-author')
   const page = form.querySelector('.js-form-page')
-  const read = form.querySelector('.js-form-read')
+  const read = form.querySelector('[data-form-read]')
   const submit = form.querySelector('[data-form-submit]')
 
   submit.addEventListener('click', (e) => {

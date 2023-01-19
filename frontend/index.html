@@ -17,21 +17,21 @@
           <input class="js-form-title border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
         </div>
         <div class="grid gap-2">
-          <label class="text-center" for="title">Author</label>
-          <input class="js-form-author border-solid border-2 rounded border-blue-900" type="text" name="title" id="title" required>
+          <label class="text-center" for="author">Author</label>
+          <input class="js-form-author border-solid border-2 rounded border-blue-900" type="text" name="author" id="author">
         </div>
         <div class="grid gap-2">
-          <label class="text-center" for="title">Page</label>
-          <input class="js-form-page border-solid border-2 rounded border-blue-900" type="number" name="title" id="title" required>
+          <label class="text-center" for="page">Page</label>
+          <input class="js-form-page border-solid border-2 rounded border-blue-900" type="number" name="page" id="page">
         </div>
         <div class="grid grid-cols-3 gap-2">
           <p>Read ?</p>
           <div>
-            <input class="js-form-read" type="radio" id="yes" name="read" value="yes" checked>
+            <input data-form-read type="radio" id="yes" name="read" value="yes" checked>
             <label for="yes">Yes</label>
           </div>
           <div>
-            <input type="radio" id="no" name="read" value="no">
+            <input data-form-read type="radio" id="no" name="read" value="no">
             <label for="no">No</label>
           </div>
         </div>
