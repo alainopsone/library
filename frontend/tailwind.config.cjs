@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'invalid-input': "url('/invalid-red.webp')",
+        'valid-input': "url('/checked-green.webp')",
+      },
       keyframes: {
         'swing-in': {
           '0%': {

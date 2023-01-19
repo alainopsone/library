@@ -63,22 +63,47 @@ function addBook() {
   const author = form.querySelector('[data-form-author]')
   const page = form.querySelector('[data-form-page]')
   const read = form.querySelector('[data-form-read]')
-  const submit = form.querySelector('[data-form-submit]')
+  const errorMsg = document.querySelector('[data-form-error]')
 
-  submit.addEventListener('click', (e) => {
+  title.addEventListener('input', () => {
+    if (title.validity.valid) {
+      errorMsg.textContent = 'ok c\'est bon'
+      title.classList.remove('bg-invalid-input', 'border-red-600')
+      title.classList.add('bg-valid-input', 'border-green-600')
+    } else {
+      showError()
+    }
+  })
+
+  form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    bookTemplate({
-      title: `${title.value ||= '...'}`,
-      author: `${author.value ||= '...' }`,
-      page: `${page.value ||= '...'}`,
-      read: `${read.value ||= 'Not yet'}`
-    })
+    if (!title.validity.valid) {
+      title.classList.add('bg-invalid-input', 'border-red-600')
+      showError()
+    } else {
+      bookTemplate({
+        title: `${title.value ||= '...'}`,
+        author: `${author.value ||= '...' }`,
+        page: `${page.value ||= '...'}`,
+        read: `${read.value ||= 'Not yet'}`
+      })
 
-    title.value = ''
-    author.value = ''
-    page.value = ''
+      title.value = ''
+      author.value = ''
+      page.value = ''
+      errorMsg.textContent = ''
+      title.classList.remove('bg-valid-input', 'border-green-600')
+    }
   })
+
+  function showError() {
+    if (title.validity.valueMissing) {
+      errorMsg.textContent = 'You need to enter a title.'
+    } else if (title.validity.typeMismatch) {
+      errorMsg.textContent = 'Enter a real title bitch'
+    }
+  }
 }
 
 export { Library, addBook, removeBook }
