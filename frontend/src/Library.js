@@ -4,7 +4,7 @@ function Library() {
 
 const fecthBooks = async () => {
   try {
-    const response = await fetch('/books.json')
+    const response = await fetch('../src/books.json')
     const books = await response.json()
 
     books.map(book => {
