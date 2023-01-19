@@ -1,7 +1,7 @@
-import { Book, addBook, removeBook } from './Library'
+import { Library, addBook, removeBook } from './Library'
 
 window.addEventListener('DOMContentLoaded', () => {
-  Book()
+  Library()
   addBook()
   removeBook()
 })

@@ -1,16 +1,20 @@
-function Book() {
+function Library() {
   fecthBooks()
 }
 
 const fecthBooks = async () => {
-  const response = await fetch('../books.json')
-  const books = await response.json()
+  try {
+    const response = await fetch('../books.json')
+    const books = await response.json()
 
-  books.map(book => {
-    const { title, author, page, read } = book
+    books.map(book => {
+      const { title, author, page, read } = book
 
-    bookTemplate({ title, author, page, read })
-  })
+      bookTemplate({ title, author, page, read })
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 function bookTemplate({ title = '---', author = '---', page = 0, read = false } = {}) {
@@ -70,4 +74,4 @@ function addBook() {
   })
 }
 
-export { Book, addBook, removeBook }
+export { Library, addBook, removeBook }
