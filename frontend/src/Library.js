@@ -119,13 +119,12 @@ function addBook() {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
-    console.log(e)
 
     bookTemplate({
-      title: `${title.value ||= '...'}`,
-      author: `${author.value ||= '...' }`,
-      page: `${page.value ||= '...'}`,
-      read: `${read.value ||= 'Not yet'}`
+      title: `Title: ${title.value ||= '...'}`,
+      author: `Author: ${author.value ||= '...' }`,
+      page: `Pages: ${page.value ||= '...'}`,
+      read: `Read ? ${read.checked ? 'Yes' : 'Not yet'}`
     })
 
     title.value = ''
