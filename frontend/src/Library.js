@@ -57,7 +57,8 @@ function removeBook() {
   })
 }
 
-function addBook() {
+// TODO: create default form validation...
+function formValidation() {
   const form = document.querySelector('[data-form]')
   const title = form.querySelector('[data-form-title]')
   const author = form.querySelector('[data-form-author]')
@@ -70,15 +71,16 @@ function addBook() {
       errorMsg.textContent = 'ok c\'est bon'
       title.classList.remove('bg-invalid-input', 'border-red-600')
       title.classList.add('bg-valid-input', 'border-green-600')
-    } else {
+    } else if (title.value === '') {
       showError()
+      title.classList.remove('bg-valid-input', 'border-green-600')
     }
   })
 
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    if (!title.validity.valid) {
+    if (!title.validity.valid || title.valueMissing) {
       title.classList.add('bg-invalid-input', 'border-red-600')
       showError()
     } else {
@@ -100,10 +102,36 @@ function addBook() {
   function showError() {
     if (title.validity.valueMissing) {
       errorMsg.textContent = 'You need to enter a title.'
+      title.classList.add('bg-invalid-input', 'border-red-600')
     } else if (title.validity.typeMismatch) {
       errorMsg.textContent = 'Enter a real title bitch'
+      title.classList.add('bg-invalid-input', 'border-red-600')
     }
   }
+}
+
+function addBook() {
+  const form = document.querySelector('[data-form]')
+  const title = form.querySelector('[data-form-title]')
+  const author = form.querySelector('[data-form-author]')
+  const page = form.querySelector('[data-form-page]')
+  const read = form.querySelector('[data-form-read]')
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    console.log(e)
+
+    bookTemplate({
+      title: `${title.value ||= '...'}`,
+      author: `${author.value ||= '...' }`,
+      page: `${page.value ||= '...'}`,
+      read: `${read.value ||= 'Not yet'}`
+    })
+
+    title.value = ''
+    author.value = ''
+    page.value = ''
+  })
 }
 
 export { Library, addBook, removeBook }
