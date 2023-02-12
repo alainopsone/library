@@ -28,7 +28,7 @@
           <span data-form-error aria-live="polite" class="invisible hidden peer-invalid:visible text-pink-600 text-sm"></span>
         </div>
         <div class="grid grid-cols-3 gap-2">
-          <p>Read ?</p>
+          <p class="col-span-3 text-center">Read ?</p>
           <div>
             <input data-form-read type="radio" id="yes" name="read" value="yes" checked>
             <label for="yes">Yes</label>
@@ -47,11 +47,11 @@
     </div>
 
     <template data-book-template>
-      <div class="animate-swing-in grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400 bg-white">
-        <h2 data-book-title class="book-title"></h2>
-        <p data-book-author class="book-author"></p>
-        <p data-book-page class="book-page"></p>
-        <p data-book-read class="book-read"></p>
+      <div class="animate-swing-in grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400 bg-white" data-book-card>
+        <h2 data-book-title></h2>
+        <p data-book-author></p>
+        <p data-book-page></p>
+        <p data-book-read></p>
         <div class="grid md:grid-cols-2 grid-cols-1 gap-3">
           <button data-edit-book class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">Edit</button>
           <button data-delete-book class="p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white hover:bg-red-600 transition duration-400 ease-out hover:ease-in">Delete</button>

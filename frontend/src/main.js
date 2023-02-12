@@ -1,7 +1,9 @@
-import { Library, addBook, removeBook } from './Library'
+import Library from './Library.js'
 
-Library()
-addBook()
-removeBook()
+document.addEventListener('DOMContentLoaded', () => {
+  const library = new Library()
+
+  library.init()
+})
 
 

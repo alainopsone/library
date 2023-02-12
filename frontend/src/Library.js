@@ -1,136 +1,105 @@
-import { books } from './books.js'
+export default class Library {
+  constructor() {
+    this.selectors = {
+      template: '[data-book-template]',
+      bookList: '[data-books-list]',
+      form: '[data-form]',
+      title: '[data-form-title]',
+      author: '[data-form-author]',
+      page: '[data-form-page]',
+    }
+  }
 
-function Library() {
-  fecthBooks()
-}
+  get template() {
+    return document.querySelector(this.selectors.template)
+  }
 
-const fecthBooks = async () => {
-  // try {
-  //   const response = await fetch('../src/books.json')
-  //   const books = await response.json()
+  get bookList() {
+    return document.querySelector(this.selectors.bookList)
+  }
 
-  //   books.map(book => {
-  //     const { title, author, page, read } = book
+  get form() {
+    return document.querySelector(this.selectors.form)
+  }
 
-  //     bookTemplate({ title, author, page, read })
-  //   })
-  // } catch (error) {
-  //   console.error(error)
-  // }
+  get title() {
+    return this.form.querySelector(this.selectors.title)
+  }
 
-  // TODO: delete fake data (will change to async await func (see func above))
-  if (books) {
-    books.map(book => {
-      const { title, author, page, read } = book
+  get author() {
+    return this.form.querySelector(this.selectors.author)
+  }
 
-      bookTemplate({ title, author, page, read })
+  get page() {
+    return this.form.querySelector('[data-form-page]')
+  }
+
+  get read() {
+    return this.form.querySelector('[data-form-read]')
+  }
+
+  init() {
+    this.addListeners()
+    this.fetchBooks()
+  }
+
+  fetchBooks = async () => {
+    try {
+      // const response = await fetch('books.json') // ?? marche pas..
+      const response = await fetch('../src/books.json')
+      const books = await response.json()
+
+      // books.map(this.addBook) // ERROR ??????
+      books.map(this.addBook.bind(this))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  addBook({ title = '', author = '', page = 0, read = false } = {}) {
+    const templateContent = this.template.content
+
+    templateContent.querySelector('[data-book-title]').textContent = `Title: ${title || '...'}`
+    templateContent.querySelector('[data-book-author]').textContent = `Author: ${author || '...' }`
+    templateContent.querySelector('[data-book-page]').textContent = `Pages: ${page || '...'}`
+    templateContent.querySelector('[data-book-read]').textContent = `Read ? ${read ? 'Yes' : 'Not yet'}`
+
+    this.bookList.appendChild(templateContent.cloneNode(true))
+  }
+
+  addListeners() {
+    this.form.addEventListener('submit', this.onFormSubmit.bind(this))
+    document.addEventListener('click', this.handleBookRemove.bind(this))
+
+    document.addEventListener('animationend', (event) => {
+      const target = event.target.closest('[data-book-card]')
+
+      if (target && event.animationName === 'flicker-out') {
+        target.remove()
+      }
     })
   }
-}
 
-function bookTemplate({ title = '---', author = '---', page = 0, read = false } = {}) {
-  const bookList = document.querySelector('[data-books-list]')
-  const template = document.querySelector('[data-book-template]')
-  const templateContent = template.content
-
-  templateContent.querySelector('[data-book-title]').textContent = title
-  templateContent.querySelector('[data-book-author]').textContent = author
-  templateContent.querySelector('[data-book-page]').textContent = page
-  templateContent.querySelector('[data-book-read]').textContent = read
-
-  bookList.append(templateContent.cloneNode(true))
-}
-
-function removeBook() {
-  document.addEventListener('click', (e) => {
+  handleBookRemove(e) {
     const target = e.target.closest('[data-delete-book]')
 
     if (target) {
-      const parent = target.parentElement.parentElement
+      const parent = target.closest('[data-book-card]')
 
       parent.classList.add('animate-flicker-out')
-
-      parent.addEventListener('animationend', () => {
-        parent.remove()
-      })
-    }
-  })
-}
-
-// TODO: create default form validation...
-function formValidation() {
-  const form = document.querySelector('[data-form]')
-  const title = form.querySelector('[data-form-title]')
-  const author = form.querySelector('[data-form-author]')
-  const page = form.querySelector('[data-form-page]')
-  const read = form.querySelector('[data-form-read]')
-  const errorMsg = document.querySelector('[data-form-error]')
-
-  title.addEventListener('input', () => {
-    if (title.validity.valid) {
-      errorMsg.textContent = 'ok c\'est bon'
-      title.classList.remove('bg-invalid-input', 'border-red-600')
-      title.classList.add('bg-valid-input', 'border-green-600')
-    } else if (title.value === '') {
-      showError()
-      title.classList.remove('bg-valid-input', 'border-green-600')
-    }
-  })
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    if (!title.validity.valid || title.valueMissing) {
-      title.classList.add('bg-invalid-input', 'border-red-600')
-      showError()
-    } else {
-      bookTemplate({
-        title: `${title.value ||= '...'}`,
-        author: `${author.value ||= '...' }`,
-        page: `${page.value ||= '...'}`,
-        read: `${read.value ||= 'Not yet'}`
-      })
-
-      title.value = ''
-      author.value = ''
-      page.value = ''
-      errorMsg.textContent = ''
-      title.classList.remove('bg-valid-input', 'border-green-600')
-    }
-  })
-
-  function showError() {
-    if (title.validity.valueMissing) {
-      errorMsg.textContent = 'You need to enter a title.'
-      title.classList.add('bg-invalid-input', 'border-red-600')
-    } else if (title.validity.typeMismatch) {
-      errorMsg.textContent = 'Enter a real title bitch'
-      title.classList.add('bg-invalid-input', 'border-red-600')
     }
   }
-}
 
-function addBook() {
-  const form = document.querySelector('[data-form]')
-  const title = form.querySelector('[data-form-title]')
-  const author = form.querySelector('[data-form-author]')
-  const page = form.querySelector('[data-form-page]')
-  const read = form.querySelector('[data-form-read]')
-
-  form.addEventListener('submit', (e) => {
+  onFormSubmit(e) {
     e.preventDefault()
 
-    bookTemplate({
-      title: `Title: ${title.value ||= '...'}`,
-      author: `Author: ${author.value ||= '...' }`,
-      page: `Pages: ${page.value ||= '...'}`,
-      read: `Read ? ${read.checked ? 'Yes' : 'Not yet'}`
+    this.addBook({
+      title: this.title.value,
+      author: this.author.value,
+      page: this.page.value,
+      read: this.read.checked
     })
 
-    title.value = ''
-    author.value = ''
-    page.value = ''
-  })
+    this.form.reset()
+  }
 }
-
-export { Library, addBook, removeBook }
