@@ -1,3 +1,4 @@
+import Book from "./Book"
 export default class Library {
   constructor() {
     this.selectors = {
@@ -31,11 +32,11 @@ export default class Library {
   }
 
   get page() {
-    return this.form.querySelector('[data-form-page]')
+    return this.form.querySelector(this.selectors.page)
   }
 
   get read() {
-    return this.form.querySelector('[data-form-read]')
+    return this.form.querySelector(this.selectors.read)
   }
 
   init() {
@@ -65,6 +66,13 @@ export default class Library {
     templateContent.querySelector('[data-book-read]').textContent = `Read ? ${read ? 'Yes' : 'Not yet'}`
 
     this.bookList.appendChild(templateContent.cloneNode(true))
+
+    const book = new Book({
+      title: '',
+      author: '',
+      page: 0,
+      read: false
+    })
   }
 
   addListeners() {
