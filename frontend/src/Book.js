@@ -1,44 +1,34 @@
-const DEFAULT_INFO = {
+const DEFAULT_INFOS = {
   title: '',
   author: '',
   page: 0,
   read: false
 }
 
+// Quand on ajoute un livre sur Library.js recuperer les infos ici
+// ici on gere seulement UN livre et ses infos
+// et on renvoit un objet {title, author, page, read}
+
 export default class Book {
   constructor(infos) {
     Object.entries(infos).forEach(([key, value]) => {
       this[key] = value
     })
-
-    this.selectors = {
-      template: '[data-book-template]',
-      bookList: '[data-books-list]',
-      form: '[data-form]',
-      title: '[data-form-title]',
-      author: '[data-form-author]',
-      page: '[data-form-page]',
-      read: '[data-form-read]',
-    }
   }
 
   set title(value) {
-    this.selectors.title = value
+
   }
 
   set author(value) {
-    this.selectors.author = value
+
   }
 
   set page(value) {
-    this.selectors.page = value
+
   }
 
   set read(value) {
-    this.selectors.read = value
-  }
 
-  get template() {
-    return document.querySelector(this.selectors.template)
   }
 }

@@ -1,4 +1,3 @@
-import Book from "./Book"
 export default class Library {
   constructor() {
     this.selectors = {
@@ -66,13 +65,6 @@ export default class Library {
     templateContent.querySelector('[data-book-read]').textContent = `Read ? ${read ? 'Yes' : 'Not yet'}`
 
     this.bookList.appendChild(templateContent.cloneNode(true))
-
-    const book = new Book({
-      title: '',
-      author: '',
-      page: 0,
-      read: false
-    })
   }
 
   addListeners() {
@@ -105,7 +97,7 @@ export default class Library {
       title: this.title.value,
       author: this.author.value,
       page: this.page.value,
-      read: this.read.checked
+      read: this.read
     })
 
     this.form.reset()
