@@ -5,10 +5,6 @@ const DEFAULT_INFOS = {
   read: false
 }
 
-// Quand on ajoute un livre sur Library.js recuperer les infos ici
-// ici on gere seulement UN livre et ses infos
-// et on renvoit un objet {title, author, page, read}
-
 export default class Book {
   constructor(infos) {
     Object.entries(infos).forEach(([key, value]) => {
@@ -17,18 +13,18 @@ export default class Book {
   }
 
   set title(value) {
-
+    this.title.value = value
   }
 
   set author(value) {
-
+    console.log(value)
   }
 
   set page(value) {
-
+    console.log(value)
   }
 
   set read(value) {
-
+    console.log(value)
   }
 }

@@ -1,3 +1,4 @@
+import FormValidator from "./Form-validator"
 export default class Library {
   constructor() {
     this.selectors = {
@@ -69,6 +70,7 @@ export default class Library {
 
   addListeners() {
     this.form.addEventListener('submit', this.onFormSubmit.bind(this))
+
     document.addEventListener('click', this.handleBookRemove.bind(this))
 
     document.addEventListener('animationend', (event) => {
@@ -80,8 +82,8 @@ export default class Library {
     })
   }
 
-  handleBookRemove(e) {
-    const target = e.target.closest('[data-delete-book]')
+  handleBookRemove(event) {
+    const target = event.target.closest('[data-delete-book]')
 
     if (target) {
       const parent = target.closest('[data-book-card]')
@@ -90,16 +92,19 @@ export default class Library {
     }
   }
 
-  onFormSubmit(e) {
-    e.preventDefault()
+  onFormSubmit(event) {
+    event.preventDefault()
+    const formValidator = new FormValidator()
 
-    this.addBook({
-      title: this.title.value,
-      author: this.author.value,
-      page: this.page.value,
-      read: this.read
-    })
+    if (formValidator.checkValidity()) {
+      this.addBook({
+        title: this.title.value,
+        author: this.author.value,
+        page: this.page.value,
+        read: this.read
+      })
 
-    this.form.reset()
+      this.form.reset()
+    }
   }
 }

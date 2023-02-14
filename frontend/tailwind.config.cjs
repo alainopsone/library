@@ -11,6 +11,23 @@ module.exports = {
         'valid-input': "url('/checked-green.webp')",
       },
       keyframes: {
+        'shake': {
+          '0%, 100%': {
+            transform: 'translateX(0)'
+          },
+          '10%, 30%, 50%, 70%': {
+            transform: 'translateX(-10px)'
+          },
+          '20%, 40%, 60%': {
+            transform: 'translateX(10px)'
+          },
+          '80%': {
+            transform: 'translateX(8px)'
+          },
+          '90%': {
+            transform: 'translateX(-8px)'
+          }
+        },
         'swing-in': {
           '0%': {
             transform: 'rotateX(-100deg)',
@@ -137,7 +154,8 @@ module.exports = {
       },
       animation: {
         'swing-in': 'swing-in 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
-        'flicker-out': 'flicker-out 2s linear both'
+        'flicker-out': 'flicker-out 2s linear both',
+        'shake': 'shake 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both',
       }
     },
   },
