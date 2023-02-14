@@ -76,6 +76,7 @@ export default class Library {
     document.addEventListener('animationend', (event) => {
       const target = event.target.closest('[data-book-card]')
 
+      console.log(target)
       if (target && event.animationName === 'flicker-out') {
         target.remove()
       }
@@ -88,6 +89,7 @@ export default class Library {
     if (target) {
       const parent = target.closest('[data-book-card]')
 
+      parent.classList.remove('animate-swing-in')
       parent.classList.add('animate-flicker-out')
     }
   }
