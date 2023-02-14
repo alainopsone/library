@@ -76,7 +76,6 @@ export default class Library {
     document.addEventListener('animationend', (event) => {
       const target = event.target.closest('[data-book-card]')
 
-      console.log(target)
       if (target && event.animationName === 'flicker-out') {
         target.remove()
       }
