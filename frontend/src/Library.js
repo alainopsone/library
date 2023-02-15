@@ -1,4 +1,5 @@
-import FormValidator from "./Form-validator"
+import FormValidator from "./FormValidator"
+import Book from "./Book"
 export default class Library {
   constructor() {
     this.selectors = {
@@ -8,6 +9,7 @@ export default class Library {
       title: '[data-form-title]',
       author: '[data-form-author]',
       page: '[data-form-page]',
+      read: '[data-form-read]',
     }
   }
 
@@ -58,14 +60,27 @@ export default class Library {
   }
 
   addBook({ title = '', author = '', page = 0, read = false } = {}) {
+    const book = new Book({
+      title: title,
+      author: author,
+      page: page,
+      read: read,
+    })
+
     const templateContent = this.template.content
 
-    templateContent.querySelector('[data-book-title]').textContent = `Title: ${title || '...'}`
-    templateContent.querySelector('[data-book-author]').textContent = `Author: ${author || '...' }`
-    templateContent.querySelector('[data-book-page]').textContent = `Pages: ${page || '...'}`
-    templateContent.querySelector('[data-book-read]').textContent = `Read ? ${read ? 'Yes' : 'Not yet'}`
+    templateContent.querySelector('[data-book-card]').id = book.infos.id
+    templateContent.querySelector('[data-book-title]').textContent = book.infos.title
+    templateContent.querySelector('[data-book-author]').textContent = book.infos.author
+    templateContent.querySelector('[data-book-page]').textContent = book.infos.page
+    templateContent.querySelector('[data-book-read]').textContent = book.infos.read
 
     this.bookList.appendChild(templateContent.cloneNode(true))
+
+    book.title = book.infos.title
+    book.author = book.infos.author
+    book.page = book.infos.page
+    book.read = book.infos.read
   }
 
   addListeners() {
@@ -102,7 +117,7 @@ export default class Library {
         title: this.title.value,
         author: this.author.value,
         page: this.page.value,
-        read: this.read
+        read: this.read.checked
       })
 
       this.form.reset()
