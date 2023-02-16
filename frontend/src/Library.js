@@ -1,5 +1,5 @@
-import FormValidator from "./FormValidator"
-import Book from "./Book"
+import FormValidator from './FormValidator'
+import Book from './Book'
 export default class Library {
   constructor() {
     this.selectors = {
@@ -9,7 +9,7 @@ export default class Library {
       title: '[data-form-title]',
       author: '[data-form-author]',
       page: '[data-form-page]',
-      read: '[data-form-read]',
+      read: '[data-form-read]'
     }
   }
 
@@ -61,10 +61,10 @@ export default class Library {
 
   addBook({ title = '', author = '', page = 0, read = false } = {}) {
     const book = new Book({
-      title: title,
-      author: author,
-      page: page,
-      read: read,
+      title,
+      author,
+      page,
+      read
     })
 
     const templateContent = this.template.content

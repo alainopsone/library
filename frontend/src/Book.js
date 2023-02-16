@@ -1,3 +1,4 @@
+/* eslint-disable accessor-pairs */
 export default class Book {
   constructor(infos) {
     this.infos = {

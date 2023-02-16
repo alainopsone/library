@@ -55,7 +55,7 @@ export default class FormValidator {
     let isValidated = false
 
     if (regex.test(input.value)) {
-      return true
+      isValidated = true
     }
 
     return isValidated
