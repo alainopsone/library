@@ -1,39 +1,24 @@
-export default class FormValidator {
+import Form from './Form'
+export default class FormValidator extends Form {
   constructor() {
+    super()
+
     this.selectors = {
-      form: '[data-form]',
-      title: '[data-form-title]',
-      errors: '[data-form-error]',
-      inputs: 'input'
+      errors: super.errors,
+      inputs: super.inputs
     }
   }
 
-  get form() {
-    return document.querySelector(this.selectors.form)
-  }
-
-  get title() {
-    return this.form.querySelector(this.selectors.title)
-  }
-
-  get errors() {
-    return this.form.querySelectorAll(this.selectors.errors)
-  }
-
-  get inputs() {
-    return this.form.querySelectorAll(this.selectors.inputs)
-  }
-
   checkValidity() {
-    this.inputs.forEach(input => {
+    this.selectors.inputs.forEach(input => {
       if (input.getAttribute('type') === 'text') {
         if (!this.isMinLength(input) || this.isEmpty(input)) {
-          input.classList.add('border-pink-500', 'animate-shake')
-          this.showError()
+          this.showError(input)
+
           return false
         } else {
-          input.classList.remove('border-pink-500', 'animate-shake')
-          this.removeError()
+          this.removeError(input)
+
           return true
         }
       }
@@ -61,15 +46,21 @@ export default class FormValidator {
     return isValidated
   }
 
-  showError() {
-    this.errors.forEach(error => {
-      error.classList.remove('hidden', 'invisible')
-    })
+  showError(input) {
+    if (input) {
+      const err = input.nextElementSibling
+      input.classList.add('border-pink-500', 'animate-shake')
+
+      err.classList.remove('hidden', 'invisible')
+    }
   }
 
-  removeError() {
-    this.errors.forEach(error => {
-      error.classList.add('hidden', 'invisible')
-    })
+  removeError(input) {
+    if (input) {
+      const err = input.nextElementSibling
+      input.classList.remove('border-pink-500', 'animate-shake')
+
+      err.classList.add('hidden', 'invisible')
+    }
   }
 }
