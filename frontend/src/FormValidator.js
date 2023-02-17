@@ -51,7 +51,7 @@ export default class FormValidator extends Form {
       const err = input.nextElementSibling
       input.classList.add('border-pink-500', 'animate-shake')
 
-      err.classList.remove('hidden', 'invisible')
+      err.classList.remove('invisible')
     }
   }
 
@@ -60,7 +60,7 @@ export default class FormValidator extends Form {
       const err = input.nextElementSibling
       input.classList.remove('border-pink-500', 'animate-shake')
 
-      err.classList.add('hidden', 'invisible')
+      err.classList.add('invisible')
     }
   }
 }
