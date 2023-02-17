@@ -1,16 +1,21 @@
 export default class Form {
   constructor() {
     this.selectors = {
-      forms: 'form',
+      form: '[data-form]',
+      errors: '[data-form-error]',
       inputs: 'input'
     }
   }
 
   get form() {
-    return document.querySelectorAll(this.selectors.forms)
+    return document.querySelector(this.selectors.form)
   }
 
   get inputs() {
     return this.form.querySelectorAll(this.selectors.inputs)
+  }
+
+  get errors() {
+    return this.form.querySelectorAll(this.selectors.errors)
   }
 }
