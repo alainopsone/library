@@ -1,5 +1,4 @@
 import Book from './Book.js'
-import FormValidator from './FormValidator.js'
 
 export default class Library {
   constructor() {
@@ -72,8 +71,6 @@ export default class Library {
 
     this.bookList.appendChild(templateContent.cloneNode(true))
 
-    console.log(book.infos.title)
-
     book.title = book.infos.title
     book.author = book.infos.author
     book.page = book.infos.page
@@ -109,6 +106,7 @@ export default class Library {
     event.preventDefault()
     // const formValidator = new FormValidator()
 
+    // eslint-disable-next-line no-constant-condition
     if (true) {
       this.addBook({
         title: this.title.value,
