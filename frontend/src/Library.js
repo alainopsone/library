@@ -120,20 +120,4 @@ export default class Library {
       this.form.reset()
     }
   }
-
-  // onFormSubmit(event) {
-  //   event.preventDefault()
-  //   // const formValidator = new FormValidator()
-
-  //   if (true) {
-  //     this.addBook({
-  //       title: this.title.value,
-  //       author: this.author.value,
-  //       page: this.page.value,
-  //       read: this.read.checked
-  //     })
-
-  //     this.form.reset()
-  //   }
-  // }
 }
