@@ -62,7 +62,6 @@ export default class Library {
 
   addBook({ title = '', author = '', page = 0, read = false } = {}) {
     const book = new Book({ title, author, page, read })
-
     const templateContent = this.template.content
 
     templateContent.querySelector('[data-book-card]').id = book.infos.id
@@ -73,6 +72,8 @@ export default class Library {
 
     this.bookList.appendChild(templateContent.cloneNode(true))
 
+    console.log(book.infos.title)
+
     book.title = book.infos.title
     book.author = book.infos.author
     book.page = book.infos.page
@@ -80,9 +81,9 @@ export default class Library {
   }
 
   addListeners() {
-    this.form.addEventListener('submit', this.onFormSubmit.bind(this))
+    this.form.addEventListener('submit', this.onFormSubmit)
 
-    document.addEventListener('click', this.handleBookRemove.bind(this))
+    document.addEventListener('click', this.handleBookRemove)
 
     document.addEventListener('animationend', (event) => {
       const target = event.target.closest('[data-book-card]')
@@ -93,7 +94,7 @@ export default class Library {
     })
   }
 
-  handleBookRemove(event) {
+  handleBookRemove = event => {
     const target = event.target.closest('[data-delete-book]')
 
     if (target) {
@@ -104,11 +105,11 @@ export default class Library {
     }
   }
 
-  onFormSubmit(event) {
+  onFormSubmit = event => {
     event.preventDefault()
-    const formValidator = new FormValidator()
+    // const formValidator = new FormValidator()
 
-    if (formValidator.checkValidity()) {
+    if (true) {
       this.addBook({
         title: this.title.value,
         author: this.author.value,
@@ -119,4 +120,20 @@ export default class Library {
       this.form.reset()
     }
   }
+
+  // onFormSubmit(event) {
+  //   event.preventDefault()
+  //   // const formValidator = new FormValidator()
+
+  //   if (true) {
+  //     this.addBook({
+  //       title: this.title.value,
+  //       author: this.author.value,
+  //       page: this.page.value,
+  //       read: this.read.checked
+  //     })
+
+  //     this.form.reset()
+  //   }
+  // }
 }
