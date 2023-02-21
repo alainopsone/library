@@ -41,10 +41,10 @@
 
     <template data-book-template>
       <div class="animate-swing-in grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400 bg-white" data-book-card>
-        <h2 data-book-title></h2>
-        <p data-book-author></p>
-        <p data-book-page></p>
-        <p data-book-read></p>
+        <p>Title: <span data-book-title></span></p>
+        <p>Author: <span data-book-author></span></p>
+        <p>Page: <span data-book-page></span></p>
+        <p>Read ? <span data-book-read></span></p>
         <div class="grid md:grid-cols-2 grid-cols-1 gap-3 items-end">
           <button data-edit-book class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">Edit</button>
           <button data-delete-book class="p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white hover:bg-red-600 transition duration-400 ease-out hover:ease-in">Delete</button>
