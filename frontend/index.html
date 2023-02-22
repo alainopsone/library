@@ -8,7 +8,43 @@
     <title>Library</title>
   </head>
   <body class="text-slate-800">
-    <div class="px-4">
+    <header class="fixed w-full h-28 flex justify-between items-center bg-blue-500">
+      <div class="w-28">
+        <a href="#">
+          <img src="/JavaScript-logo.webp" alt="javascript logo">
+        </a>
+      </div>
+      <nav class="hidden md:block">
+        <ul class="grid grid-flow-col gap-4 text-white">
+          <li><a href="#">Menu 1</a></li>
+          <li><a href="#">Menu 2</a></li>
+          <li><a href="#">Menu 3</a></li>
+          <li><a href="#">Menu 4</a></li>
+        </ul>
+      </nav>
+      <div>
+        <button data-menu-button class="" aria-controls="primary-navigation" aria-expanded="false">
+          <svg fill="#ffffff" class="" width="48" viewBox="0 0 100 100">
+            <rect class="" width="80" height="8" x="10" y="25" rx="5"></rect>
+            <rect class="" width="80" height="8" x="10" y="45" rx="5"></rect>
+            <rect class="" width="80" height="8" x="10" y="65" rx="5"></rect>
+          </svg>
+        </button>
+      </div>
+      <ul class="hidden md:grid grid-flow-col gap-4 justify-self-end pr-4">
+        <li>
+          <a href="#">
+            <img src="/twitter-logo.webp" class="w-8" alt="twitter logo">
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="/linkedin-logo.webp" class="w-8" alt="linkedin logo">
+          </a>
+        </li>
+      </ul>
+    </header>
+    <div class="px-4 pt-28">
       <h1 class="my-3 text-3xl font-bold text-center text-blue-500">Library</h1>
 
       <form data-form class="grid md:grid-cols-2 grid-cols-1 lg:w-6/12 w-12/12 gap-4 justify-items-center items-center mx-auto p-4 border-solid border-2 rounded border-blue-900" novalidate>
@@ -41,21 +77,21 @@
 
     <template data-book-template>
       <div class="animate-swing-in grid grid-flow-row gap-3 p-4 border-solid border-2 rounded border-blue-400 bg-white" data-book-card>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <p>Title: <span data-book-title></span></p>
-          <button class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
+          <button data-book-edit class="self-start p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <p>Author: <span data-book-author></span></p>
-          <button class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
+          <button data-book-edit class="self-start p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <p>Page: <span data-book-page></span></p>
-          <button class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
+          <button data-book-edit class="self-start p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
           <p>Read ? <span data-book-read></span></p>
-          <button class="p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
+          <button data-book-edit class="self-start p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
         </div>
         <div class="grid md:grid-cols-2 grid-cols-1 gap-3 items-end">
           <button data-edit-book class="p-1 border-solid border-2 rounded border-yellow-500 bg-yellow-300 text-white hover:bg-yellow-200 transition duration-400 ease-out hover:ease-in">Favorite</button>
