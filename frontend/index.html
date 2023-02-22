@@ -8,29 +8,27 @@
     <title>Library</title>
   </head>
   <body class="text-slate-800">
-    <header class="fixed w-full h-28 flex justify-between items-center bg-blue-500">
+    <header class="fixed z-10 w-full h-28 flex justify-between items-center bg-blue-500">
       <div class="w-28">
         <a href="#">
           <img src="/JavaScript-logo.webp" alt="javascript logo">
         </a>
       </div>
-      <nav class="hidden md:block">
-        <ul class="grid grid-flow-col gap-4 text-white">
-          <li><a href="#">Menu 1</a></li>
-          <li><a href="#">Menu 2</a></li>
-          <li><a href="#">Menu 3</a></li>
-          <li><a href="#">Menu 4</a></li>
+      <button data-menu-button class="md:hidden z-10" data-state="is-closed" aria-expanded="false">
+        <svg fill="#ffffff" class="" width="48" viewBox="0 0 100 100">
+          <rect class="" width="80" height="8" x="10" y="25" rx="5"></rect>
+          <rect class="" width="80" height="8" x="10" y="45" rx="5"></rect>
+          <rect class="" width="80" height="8" x="10" y="65" rx="5"></rect>
+        </svg>
+      </button>
+      <nav data-menu-list class="hidden md:block fixed inset-0 bg-cyan-500">
+        <ul class="grid md:grid-flow-col grid-flow-row content-center justify-center h-full w-full gap-4 text-white">
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">More...</a></li>
         </ul>
       </nav>
-      <div>
-        <button data-menu-button class="" aria-controls="primary-navigation" aria-expanded="false">
-          <svg fill="#ffffff" class="" width="48" viewBox="0 0 100 100">
-            <rect class="" width="80" height="8" x="10" y="25" rx="5"></rect>
-            <rect class="" width="80" height="8" x="10" y="45" rx="5"></rect>
-            <rect class="" width="80" height="8" x="10" y="65" rx="5"></rect>
-          </svg>
-        </button>
-      </div>
       <ul class="hidden md:grid grid-flow-col gap-4 justify-self-end pr-4">
         <li>
           <a href="#">
@@ -93,7 +91,7 @@
           <p>Read ? <span data-book-read></span></p>
           <button data-book-edit class="self-start p-1 border-solid border-2 rounded border-blue-600 bg-blue-500 text-white hover:bg-blue-600 transition duration-400 ease-out hover:ease-in">edit</button>
         </div>
-        <div class="grid md:grid-cols-2 grid-cols-1 gap-3 items-end">
+        <div class="grid grid-cols-2 gap-3 items-end">
           <button data-edit-book class="p-1 border-solid border-2 rounded border-yellow-500 bg-yellow-300 text-white hover:bg-yellow-200 transition duration-400 ease-out hover:ease-in">Favorite</button>
           <button data-delete-book class="p-1 border-solid border-2 rounded border-red-600 bg-red-500 text-white hover:bg-red-600 transition duration-400 ease-out hover:ease-in">Delete</button>
         </div>
