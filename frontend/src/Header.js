@@ -1,7 +1,14 @@
+import { toggleStateClass, lockElement } from './Utils'
 export default class Header {
   constructor() {
     this.selectors = {
-      menu: '[data-menu-button]'
+      menu: '[data-menu-button]',
+      menuList: '[data-menu-list]'
+    }
+
+    this.states = {
+      isOpened: 'is-opened',
+      isClosed: 'is-closed'
     }
   }
 
@@ -10,18 +17,23 @@ export default class Header {
   }
 
   get menuButton() { return document.querySelector(this.selectors.menu) }
+  get menuList() { return document.querySelector(this.selectors.menuList) }
 
   listenEvents() {
-    this.menuButton.addEventListener('click', () => {
-      this.menuButton.classList.contains('is-opened') ? this.close() : this.open()
-    })
+    this.menuButton.addEventListener('click', this.handleMenuState)
   }
 
-  open = () => {
-    this.menuButton.classList.add('is-opened')
-  }
+  handleMenuState = () => {
+    const currentState = this.menuButton.getAttribute('data-state')
 
-  close = () => {
-    this.menuButton.classList.remove('is-opened')
+    if (currentState === this.states.isClosed) {
+      this.menuButton.setAttribute('data-state', this.states.isOpened)
+      toggleStateClass(this.menuList, 'hidden', false)
+      lockElement('body', true)
+    } else {
+      this.menuButton.setAttribute('data-state', this.states.isClosed)
+      toggleStateClass(this.menuList, 'hidden', true)
+      lockElement('body', false)
+    }
   }
 }
