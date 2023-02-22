@@ -71,10 +71,7 @@ export default class Library {
 
     this.bookList.appendChild(templateContent.cloneNode(true))
 
-    book.title = book.infos.title
-    book.author = book.infos.author
-    book.page = book.infos.page
-    book.read = book.infos.read
+    // book.title = book.infos.title
   }
 
   addListeners() {
