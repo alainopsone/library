@@ -40,6 +40,18 @@ module.exports = {
             opacity: '1'
           }
         },
+        'swing-in-right': {
+          '0%': {
+            transform: 'rotateY(-100deg)',
+            'transform-origin': 'right',
+            opacity: '0'
+          },
+          '100%': {
+            transform: 'rotateY(0)',
+            'transform-origin': 'right',
+            opacity: '1'
+          }
+        },
         'flicker-out': {
           '0%': {
             opacity: '1'
@@ -154,7 +166,7 @@ module.exports = {
       },
       animation: {
         'swing-in': 'swing-in 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
-        'swing-in-right-fwd': '2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
+        'swing-in-right': '2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
         'flicker-out': 'flicker-out 2s linear both',
         shake: 'shake 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both'
       }
