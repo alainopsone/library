@@ -13,7 +13,7 @@ export default class Header {
   }
 
   init() {
-    if (this.menuButton) this.listenEvents()
+    if (this.menuButton) { this.listenEvents() }
   }
 
   get menuButton() { return document.querySelector(this.selectors.menu) }
