@@ -63,15 +63,13 @@ export default class Library {
     const book = new Book({ title, author, page, read })
     const templateContent = this.template.content
 
-    templateContent.querySelector('[data-book-card]').id = book.infos.id
-    templateContent.querySelector('[data-book-title]').textContent = book.infos.title
-    templateContent.querySelector('[data-book-author]').textContent = book.infos.author
-    templateContent.querySelector('[data-book-page]').textContent = book.infos.page
-    templateContent.querySelector('[data-book-read]').textContent = book.infos.read
+    templateContent.querySelector('[data-book-card]').id = book.id
+    templateContent.querySelector('[data-book-title]').textContent = book.title
+    templateContent.querySelector('[data-book-author]').textContent = book.author
+    templateContent.querySelector('[data-book-page]').textContent = book.page
+    templateContent.querySelector('[data-book-read]').textContent = book.read
 
     this.bookList.appendChild(templateContent.cloneNode(true))
-
-    // book.title = book.infos.title
   }
 
   addListeners() {

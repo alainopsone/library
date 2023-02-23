@@ -1,6 +1,6 @@
 - Ajouter un loader dans la card d'un livre ajouté avant d'afficher son contenu
 
-- Créer une classe Book et extraire tout ce qui concerne le contenu dedans
+[OK] Créer une classe Book et extraire tout ce qui concerne le contenu dedans
 
 - Ajouter un validateur sur le champs "Auteur", il doit être composé de deux mots séparés par un espace et doit contenir 3 caractères minimum. Cela doit afficher un message d'erreur. Le livre ne doit pas s'ajouter tant que le champs n'est pas correct.
 

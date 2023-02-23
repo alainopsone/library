@@ -13,14 +13,14 @@ export default class Header {
   }
 
   init() {
-    if (this.menuButton) { this.listenEvents() }
+    this.listenEvents()
   }
 
   get menuButton() { return document.querySelector(this.selectors.menu) }
   get menuList() { return document.querySelector(this.selectors.menuList) }
 
   listenEvents() {
-    this.menuButton.addEventListener('click', this.handleMenuState)
+    this.menuButton?.addEventListener('click', this.handleMenuState)
   }
 
   handleMenuState = () => {
