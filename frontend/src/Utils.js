@@ -6,8 +6,12 @@ const lockElement = (element, bool) => {
   document.querySelector(element).classList.toggle('overflow-hidden', bool)
 }
 
-const delegate = () => {
-
+const delegateEventToDocument = (selector, eventType, cb) => {
+  document.addEventListener(eventType, event => {
+    if (event.target === selector || event.target.closest(selector)) {
+      cb()
+    }
+  })
 }
 
-export { toggleStateClass, lockElement, delegate }
+export { toggleStateClass, lockElement, delegateEventToDocument }

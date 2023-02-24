@@ -1,5 +1,6 @@
 import Book from './Book.js'
-import { inputIsValid, getInputType } from './Tools'
+import { inputIsValid } from './Tools'
+import { delegateEventToDocument } from './Utils'
 
 export default class Library {
   constructor() {
@@ -10,7 +11,8 @@ export default class Library {
       title: '[data-form-title]',
       author: '[data-form-author]',
       page: '[data-form-page]',
-      read: '[data-form-read]'
+      read: '[data-form-read]',
+      edit: '[data-book-edit]'
     }
   }
 
@@ -42,9 +44,20 @@ export default class Library {
     return this.form.querySelector(this.selectors.read)
   }
 
+  get editButton() {
+    return document.querySelector(this.selectors.edit)
+  }
+
   init() {
     this.addListeners()
     this.fetchBooks()
+    this.edit()
+  }
+
+  edit() {
+    delegateEventToDocument(this.selectors.edit, 'click', () => {
+      console.log('okkk')
+    })
   }
 
   fetchBooks = async () => {

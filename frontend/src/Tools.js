@@ -1,25 +1,4 @@
-const isEmpty = (input) => {
-  let isEmpty = true
-
-  if (input.value.trim() !== '') {
-    isEmpty = false
-  }
-
-  return isEmpty
-}
-
-const isMinLength = (input) => {
-  const regex = /^[a-zA-Z]{3,}$/
-  let isValidated = false
-
-  if (regex.test(input.value)) {
-    isValidated = true
-  }
-
-  return isValidated
-}
-
-const showError = (input) => {
+const showError = input => {
   if (input) {
     const err = input.nextElementSibling
     input.classList.add('border-pink-500', 'animate-shake')
@@ -28,7 +7,7 @@ const showError = (input) => {
   }
 }
 
-const removeError = (input) => {
+const removeError = input => {
   if (input) {
     const err = input.nextElementSibling
     input.classList.remove('border-pink-500', 'animate-shake')
@@ -60,6 +39,11 @@ const getInputType = input => {
   }
 }
 
+const DEFAULT_VALID_OPTIONS = {
+  minLength: 2,
+  maxLength: 28
+}
+
 const inputIsValid = (input, { minLength: min = 2, maxLength: max = 22 } = {}) => {
   if (input.value.trim() === '') {
     showError(input)
@@ -74,9 +58,6 @@ const inputIsValid = (input, { minLength: min = 2, maxLength: max = 22 } = {}) =
 }
 
 export {
-  isEmpty,
-  isMinLength,
-  showError,
   removeError,
   inputIsValid,
   getInputType
