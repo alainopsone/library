@@ -1,11 +1,11 @@
 /* eslint-disable accessor-pairs */
 export default class Book {
-  constructor({ title, author, page, read } = {}) {
+  constructor({ title: t, author: a, page: p, read: r } = {}) {
     this.id = `book-${Date.now()}${Math.floor(Math.random() * 100)}`
-    this.title = title
-    this.author = author
-    this.page = page
-    this.read = read
+    this.title = t
+    this.author = a
+    this.page = p
+    this.read = r
   }
 
   get cardElement() { return document.getElementById(this.id) }
@@ -39,7 +39,7 @@ export default class Book {
   }
 
   set read(value) {
-    this._read = value || '...'
+    this._read = value || 'No'
 
     if (this.cardElement) {
       this.cardElement.querySelector('[data-book-read]').textContent = this._read

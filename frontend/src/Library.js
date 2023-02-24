@@ -1,4 +1,5 @@
 import Book from './Book.js'
+import { inputIsValid, getInputType } from './Tools'
 
 export default class Library {
   constructor() {
@@ -48,18 +49,16 @@ export default class Library {
 
   fetchBooks = async () => {
     try {
-      // const response = await fetch('books.json') // ?? marche pas..
       const response = await fetch('../src/books.json')
       const books = await response.json()
 
-      // books.map(this.addBook) // ERROR ??????
-      books.map(this.addBook.bind(this))
+      books.map(this.addBook)
     } catch (error) {
       console.error(error)
     }
   }
 
-  addBook({ title = '', author = '', page = 0, read = false } = {}) {
+  addBook = ({ title = '', author = '', page = 0, read = false } = {}) => {
     const book = new Book({ title, author, page, read })
     const templateContent = this.template.content
 
@@ -99,18 +98,18 @@ export default class Library {
 
   onFormSubmit = event => {
     event.preventDefault()
-    // const formValidator = new FormValidator()
 
-    // eslint-disable-next-line no-constant-condition
-    if (true) {
+    console.log(inputIsValid(this.title, { minLength: 4, maxLength: 6 }))
+
+    if (inputIsValid(this.title)) {
       this.addBook({
         title: this.title.value,
         author: this.author.value,
         page: this.page.value,
         read: this.read.checked
       })
-
-      this.form.reset()
     }
+
+    this.form.reset()
   }
 }
