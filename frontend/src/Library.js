@@ -51,7 +51,7 @@ export default class Library {
   init() {
     this.addListeners()
     this.fetchBooks()
-    this.edit()
+    // this.edit()
   }
 
   edit() {
@@ -112,7 +112,7 @@ export default class Library {
   onFormSubmit = event => {
     event.preventDefault()
 
-    console.log(inputIsValid(this.title, { minLength: 4, maxLength: 6 }))
+    // console.log(inputIsValid(this.title, { minLength: 4, maxLength: 6 }))
 
     if (inputIsValid(this.title)) {
       this.addBook({
