@@ -2,8 +2,10 @@ const toggleStateClass = (element, state, force) => {
   element.classList.toggle(state, force)
 }
 
-const lockElement = (element, bool) => {
-  document.querySelector(element).classList.toggle('overflow-hidden', bool)
+const lockElement = (selector, bool) => {
+  const element = document.querySelector(selector)
+
+  toggleStateClass(element, 'overflow-hidden', bool)
 }
 
 const delegateEventToDocument = (selector, eventType, cb) => {

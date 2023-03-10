@@ -1,6 +1,7 @@
 import Book from './Book.js'
 import { inputIsValid } from './Tools'
 import { delegateEventToDocument } from './Utils'
+import Toast from './Toast'
 
 export default class Library {
   constructor() {
@@ -92,29 +93,31 @@ export default class Library {
     document.addEventListener('animationend', (event) => {
       const target = event.target.closest('[data-book-card]')
 
-      if (target && event.animationName === 'flicker-out') {
-        target.remove()
-      }
+      if (!target) return
+      if (event.animationName !== 'flicker-out') return
+
+      target.remove()
     })
   }
 
   handleBookRemove = event => {
     const target = event.target.closest('[data-delete-book]')
 
-    if (target) {
-      const parent = target.closest('[data-book-card]')
+    if (!target) return
+    const parent = target.closest('[data-book-card]')
 
-      parent.classList.remove('animate-swing-in')
-      parent.classList.add('animate-flicker-out')
-    }
+    parent.classList.remove('animate-swing-in')
+    parent.classList.add('animate-flicker-out')
   }
 
   onFormSubmit = event => {
     event.preventDefault()
-
     // console.log(inputIsValid(this.title, { minLength: 4, maxLength: 6 }))
 
     if (inputIsValid(this.title)) {
+      // eslint-disable-next-line no-new
+      new Toast()
+
       this.addBook({
         title: this.title.value,
         author: this.author.value,
