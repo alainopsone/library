@@ -1,19 +1,19 @@
 const showError = input => {
-  if (input) {
-    const err = input.nextElementSibling
-    input.classList.add('border-pink-500', 'animate-shake')
+  if (!input) return
 
-    err.classList.remove('invisible')
-  }
+  const err = input.nextElementSibling
+
+  input.classList.add('border-pink-500', 'animate-shake')
+  err.classList.remove('invisible')
 }
 
 const removeError = input => {
-  if (input) {
-    const err = input.nextElementSibling
-    input.classList.remove('border-pink-500', 'animate-shake')
+  if (!input) return
 
-    err.classList.add('invisible')
-  }
+  const err = input.nextElementSibling
+
+  input.classList.remove('border-pink-500', 'animate-shake')
+  err.classList.add('invisible')
 }
 
 const getInputType = input => {
@@ -39,16 +39,16 @@ const getInputType = input => {
   }
 }
 
-const DEFAULT_VALID_OPTIONS = {
-  minLength: 2,
-  maxLength: 28
-}
+const inputIsValid = (input, { ...options } = {}) => {
+  const {
+    minLength = 2,
+    maxLength = 22
+  } = options
 
-const inputIsValid = (input, { minLength: min = 2, maxLength: max = 22 } = {}) => {
   if (input.value.trim() === '') {
     showError(input)
     return false
-  } else if (input.value.length <= min || input.value.length >= max) {
+  } else if (input.value.length <= minLength || input.value.length >= maxLength) {
     showError(input)
     return false
   } else {
