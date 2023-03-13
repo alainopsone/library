@@ -112,9 +112,8 @@ export default class Library {
 
   onFormSubmit = event => {
     event.preventDefault()
-    // console.log(inputIsValid(this.title, { minLength: 4, maxLength: 6 }))
 
-    if (inputIsValid(this.title)) {
+    if (inputIsValid(this.title, { minLength: 4 })) {
       // eslint-disable-next-line no-new
       new Toast()
 
