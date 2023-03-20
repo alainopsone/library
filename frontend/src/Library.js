@@ -1,5 +1,5 @@
 import Book from './Book.js'
-import { inputIsValid, loading } from './Tools'
+import { inputIsValid, isLoading } from './Tools'
 import { delegateEventToDocument } from './Utils'
 import Toast from './Toast'
 
@@ -90,7 +90,7 @@ export default class Library {
 
     document.addEventListener('click', this.handleBookRemove)
 
-    document.addEventListener('animationend', (event) => {
+    document.addEventListener('animationend', event => {
       const target = event.target.closest('[data-book-card]')
 
       if (!target) return
@@ -125,7 +125,7 @@ export default class Library {
     })
 
     this.bookList.lastElementChild.scrollIntoView({ behavior: 'smooth' })
-    loading(this.bookList.lastElementChild)
+    isLoading(this.bookList.lastElementChild)
     this.form.reset()
   }
 }

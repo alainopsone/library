@@ -60,7 +60,7 @@ const inputIsValid = (input, options = {}) => {
   }
 }
 
-const loading = targetElement => {
+const isLoading = targetElement => {
   const loadingContainer = document.createElement('div')
   const loadingImage = document.createElement('img')
 
@@ -81,5 +81,5 @@ export {
   removeError,
   inputIsValid,
   getInputType,
-  loading
+  isLoading
 }
