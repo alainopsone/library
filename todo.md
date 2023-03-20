@@ -1,8 +1,8 @@
-- Ajouter un loader dans la card d'un livre ajouté avant d'afficher son contenu
+[DONE] Ajouter un loader dans la card d'un livre ajouté avant d'afficher son contenu
 
-[OK] Créer une classe Book et extraire tout ce qui concerne le contenu dedans
+[DONE] Créer une classe Book et extraire tout ce qui concerne le contenu dedans
 
-- Ajouter un validateur sur le champs "Auteur", il doit être composé de deux mots séparés par un espace et doit contenir 3 caractères minimum. Cela doit afficher un message d'erreur. Le livre ne doit pas s'ajouter tant que le champs n'est pas correct.
+[DONE] Ajouter un validateur sur le champs "Auteur", il doit être composé de deux mots séparés par un espace et doit contenir 3 caractères minimum. Cela doit afficher un message d'erreur. Le livre ne doit pas s'ajouter tant que le champs n'est pas correct.
 
 - Ajouter un bouton d'édition à côté de chacun des attributs d'un livre. Au clic, cela remplace le texte par un champs prérempli avec la valeur actuelle. Au submit du champs, cela affiche la nouvelle valeur. Faire attention à bien respecter les validateurs du champs "Auteur". Pour le champs "Read", afficher plutôt un bouton.
 

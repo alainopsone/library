@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-absolute-path
-import spinner from '/spinner.svg'
-
 const showError = input => {
   if (!input) return
 
@@ -60,20 +57,21 @@ const inputIsValid = (input, options = {}) => {
   }
 }
 
-const isLoading = targetElement => {
-  const loadingContainer = document.createElement('div')
-  const loadingImage = document.createElement('img')
+const isLoadingAnim = targetElement => {
+  const containerElement = document.createElement('div')
+  const spinnerImage = document.createElement('img')
+  const imageURL = new URL('/spinner.svg', import.meta.url).href
 
-  loadingContainer.classList.add('absolute', 'inset-0', 'grid', 'place-content-center', 'bg-gray-100')
-  loadingImage.classList.add('w-8', 'animate-spinner')
-  loadingImage.src = spinner
+  containerElement.classList.add('absolute', 'inset-0', 'grid', 'place-content-center', 'bg-gray-100')
+  spinnerImage.classList.add('w-8', 'animate-spinner')
+  spinnerImage.src = imageURL
 
-  loadingContainer.appendChild(loadingImage)
+  containerElement.appendChild(spinnerImage)
   targetElement.classList.add('relative')
-  targetElement.appendChild(loadingContainer)
+  targetElement.appendChild(containerElement)
 
   setTimeout(() => {
-    targetElement.removeChild(loadingContainer)
+    targetElement.removeChild(containerElement)
   }, 1500)
 }
 
@@ -81,5 +79,5 @@ export {
   removeError,
   inputIsValid,
   getInputType,
-  isLoading
+  isLoadingAnim
 }

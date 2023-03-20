@@ -1,5 +1,5 @@
 import Book from './Book.js'
-import { inputIsValid, isLoading } from './Tools'
+import { inputIsValid, isLoadingAnim } from './Tools'
 import { delegateEventToDocument } from './Utils'
 import Toast from './Toast'
 
@@ -125,7 +125,7 @@ export default class Library {
     })
 
     this.bookList.lastElementChild.scrollIntoView({ behavior: 'smooth' })
-    isLoading(this.bookList.lastElementChild)
+    isLoadingAnim(this.bookList.lastElementChild)
     this.form.reset()
   }
 }
