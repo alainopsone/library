@@ -1,5 +1,5 @@
 import Book from './Book.js'
-import { inputIsValid } from './Tools'
+import { inputIsValid, loading } from './Tools'
 import { delegateEventToDocument } from './Utils'
 import Toast from './Toast'
 
@@ -113,18 +113,19 @@ export default class Library {
   onFormSubmit = event => {
     event.preventDefault()
 
-    if (inputIsValid(this.title, { minLength: 4 })) {
-      // eslint-disable-next-line no-new
-      new Toast()
+    if (!inputIsValid(this.title, { minLength: 4 })) return
+    // eslint-disable-next-line no-new
+    new Toast()
 
-      this.addBook({
-        title: this.title.value,
-        author: this.author.value,
-        page: this.page.value,
-        read: this.read.checked
-      })
-    }
+    this.addBook({
+      title: this.title.value,
+      author: this.author.value,
+      page: this.page.value,
+      read: this.read.checked
+    })
 
+    this.bookList.lastElementChild.scrollIntoView({ behavior: 'smooth' })
+    loading(this.bookList.lastElementChild)
     this.form.reset()
   }
 }

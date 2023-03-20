@@ -163,13 +163,22 @@ module.exports = {
           '100%': {
             opacity: '0'
           }
+        },
+        spinner: {
+          '0%': {
+            transform: 'rotate(0deg)'
+          },
+          '100%': {
+            transform: 'rotate(360deg)'
+          }
         }
       },
       animation: {
         'swing-in': 'swing-in 0.5s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
         'swing-in-right': '2s cubic-bezier(0.175, 0.885, 0.320, 1.275) both',
         'flicker-out': 'flicker-out 2s linear both',
-        shake: 'shake 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both'
+        shake: 'shake 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both',
+        spinner: 'spinner 1.5s linear infinite'
       }
     }
   },
