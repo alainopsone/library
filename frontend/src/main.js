@@ -1,5 +1,5 @@
 import Library from './Library.js'
-import Header from './Header'
+import Header from './Header.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
   const library = new Library()

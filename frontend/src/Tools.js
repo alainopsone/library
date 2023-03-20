@@ -39,7 +39,7 @@ const getInputType = input => {
   }
 }
 
-const inputIsValid = (input, { ...options } = {}) => {
+const inputIsValid = (input, options = {}) => {
   const {
     minLength = 2,
     maxLength = 22
